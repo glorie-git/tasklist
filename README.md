@@ -2,6 +2,9 @@
 Live demo: [https://tasklist-md96.onrender.com](https://tasklist-md96.onrender.com)
 
 ## To Do
+- [x] Make into React project
+- [x] Add TypeScript support
+- [x] Add backend with MongoDB
 - [ ] User authentication
 - [ ] Place in container*
 <!-- # React + TypeScript + Vite
