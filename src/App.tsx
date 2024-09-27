@@ -9,8 +9,7 @@ function App() {
   const [taskInput, setTaskInput] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  // [] means we only want the effect to run during the first render
-  useEffect(() => {
+  const fetchTasksHook = () => {
     taskService
       .getAll()
       .then((response: Task[]) => {
@@ -20,6 +19,10 @@ function App() {
         console.error("Failed to fetch tasks:", error);
         // Handle the error appropriately
       });
+  };
+
+  useEffect(() => {
+    fetchTasksHook();
   }, []);
 
   // the function that creates a new task
