@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link
       rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
     />
-    <script src="script.js" defer></script>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskList</title>
   </head>
   <body>
-    <div class="container">
-      <h1 id="head-text">Task List</h1>
-      <div id="newtask">
-        <input id="task-input" type="text" placeholder="Add a task" />
-        <button id="push">Add</button>
-      </div>
-      <div class="tasks"></div>
-    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
