@@ -1,0 +1,36 @@
+import { useState } from "react";
+
+interface TaskProps {
+  task: string;
+  deleteTask: (input: number) => void;
+  id: number;
+}
+
+const Task = ({ task, deleteTask, id }: TaskProps) => {
+  const [checked, setChecked] = useState(false);
+  const [lineThrough, setLineThrough] = useState(false);
+  const handleChange = () => {
+    const check = !checked;
+    setLineThrough(check);
+    setChecked(check);
+  };
+  return (
+    <div className="task">
+      <label id="taskname">
+        <input
+          onChange={handleChange}
+          checked={checked}
+          type="checkbox"
+          className="check-task"
+          name="taskname"
+        />
+        <p className={lineThrough ? "checked" : ""}>{task}</p>
+      </label>
+      <div className="delete" onClick={() => deleteTask(id)}>
+        <i className="uil uil-trash"></i>
+      </div>
+    </div>
+  );
+};
+
+export default Task;
