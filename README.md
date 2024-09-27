@@ -1,3 +1,12 @@
+# TaskList
+Live demo: [https://tasklist-md96.onrender.com](https://tasklist-md96.onrender.com)
+
+## To Do
+- [x] Make into (React)[https://react.dev/] project
+- [x] Add (TypeScript)[https://www.typescriptlang.org/] support
+- [x] Add backend with (MongoDB)[https://www.mongodb.com/]
+- [ ] User authentication
+- [ ] Place in container*
 <!-- # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
