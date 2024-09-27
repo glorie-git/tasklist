@@ -1,13 +1,26 @@
-const TaskInput = ({ taskInput, setTaskInput, createTask }) => {
+import { KeyboardEvent } from "react";
+
+interface TaskInputProps {
+  taskInput: string;
+  setTaskInput: (input: string) => void;
+  createTask: () => void;
+}
+
+const TaskInput = ({ taskInput, setTaskInput, createTask }: TaskInputProps) => {
+  const createNewTask = () => {
+    createTask();
+    const taskSection = document.querySelector(".tasks") as HTMLElement | null;
+    if (taskSection) {
+      if (taskSection.offsetHeight >= offsetHeight)
+        taskSection.classList.add("overflow");
+      else taskSection.classList.remove("overflow");
+    }
+  };
   const offsetHeight = 300;
-  const handleKeyUp = (e) => {
+  const handleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       if (taskInput.length !== 0) {
-        createTask();
-        const taskSection = document.querySelector(".tasks");
-        taskSection.offsetHeight >= 300
-          ? taskSection.classList.add("overflow")
-          : taskSection.classList.remove("overflow");
+        createNewTask();
       } else {
         alert("The task field is blank. Enter a task name and try again.");
       }
@@ -17,12 +30,7 @@ const TaskInput = ({ taskInput, setTaskInput, createTask }) => {
     if (taskInput.length === 0) {
       alert("The task field is blank. Enter a task name and try again.");
     } else {
-      createTask();
-      const taskSection = document.querySelector(".tasks");
-      console.log(taskSection);
-      taskSection.offsetHeight >= 300
-        ? taskSection.classList.add("overflow")
-        : taskSection.classList.remove("overflow");
+      createNewTask();
     }
   };
   return (

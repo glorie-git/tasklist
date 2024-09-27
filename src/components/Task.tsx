@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-const Task = ({ task, deleteTask, id }) => {
+interface TaskProps {
+  task: string;
+  deleteTask: (input: number) => void;
+  id: number;
+}
+
+const Task = ({ task, deleteTask, id }: TaskProps) => {
   const [checked, setChecked] = useState(false);
   const [lineThrough, setLineThrough] = useState(false);
   const handleChange = () => {
