@@ -10,12 +10,12 @@ const Task = ({ task, deleteTask, id }) => {
   };
   return (
     <div className="task">
-      <label id="taskname">
+      <label className="taskname">
         <input
           onChange={handleChange}
           checked={checked}
           type="checkbox"
-          id="check-task"
+          className="check-task"
         />
         <p className={lineThrough ? "checked" : ""}>{task}</p>
       </label>
