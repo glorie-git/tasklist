@@ -1,12 +1,16 @@
 import { useState } from "react";
 
-interface TaskProps {
-  task: string;
-  deleteTask: (input: number) => void;
-  id: number;
+interface Task {
+  id: string;
+  name: string;
 }
 
-const Task = ({ task, deleteTask, id }: TaskProps) => {
+interface TaskProps {
+  task: Task;
+  deleteTask: (input: string) => void;
+}
+
+const Task = ({ task, deleteTask }: TaskProps) => {
   const [checked, setChecked] = useState(false);
   const [lineThrough, setLineThrough] = useState(false);
   const handleChange = () => {
@@ -24,9 +28,9 @@ const Task = ({ task, deleteTask, id }: TaskProps) => {
           className="check-task"
           name="taskname"
         />
-        <p className={lineThrough ? "checked" : ""}>{task}</p>
+        <p className={lineThrough ? "checked" : ""}>{task.name}</p>
       </label>
-      <div className="delete" onClick={() => deleteTask(id)}>
+      <div className="delete" onClick={() => deleteTask(task.id)}>
         <i className="uil uil-trash"></i>
       </div>
     </div>

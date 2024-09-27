@@ -1,19 +1,13 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Task from "./components/Task.tsx";
 import "./App.css";
 import TaskInput from "./components/TaskInput.tsx";
 import taskService from "./services/tasks.ts";
 
-interface Task {
-  id: number;
-  name: string;
-}
-
 function App() {
   // constansts declared for input button and task list area
   const [taskInput, setTaskInput] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
-  const taskCount = useRef<number>(0);
 
   // [] means we only want the effect to run during the first render
   useEffect(() => {
@@ -33,22 +27,32 @@ function App() {
     if (taskInput.length === 0)
       alert("The task field is blank. Enter a task name and try again.");
     else {
-      const task: Task = {
-        id: taskCount.current,
-        name: taskInput,
-      };
-      setTasks([...tasks, task]);
-      taskCount.current += 1;
+      const newTask = { name: taskInput };
+
+      taskService
+        .create(newTask)
+        .then((response) => {
+          setTasks([...tasks, response]);
+        })
+        .catch((error: Error) => {
+          console.log("There was an error adding the new task:", error);
+        });
     }
     // clear the task input after adding a task
     setTaskInput("");
   };
-  const deleteTask = (id: number) => {
+  const deleteTask = (id: string) => {
     if (window.confirm(`Are you sure you want to delete the task?`)) {
       const tasksShallowCopy = tasks.filter((task) => task.id !== id);
-      setTasks(tasksShallowCopy);
+      taskService
+        .deleteTask(id)
+        .then(() => {
+          setTasks([...tasksShallowCopy]);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-    taskCount.current -= 1;
   };
 
   return (
@@ -64,12 +68,7 @@ function App() {
         </div>
         <div className="tasks">
           {tasks.map((task, index) => (
-            <Task
-              key={index}
-              id={task.id}
-              task={task.name}
-              deleteTask={deleteTask}
-            />
+            <Task key={index} task={task} deleteTask={deleteTask} />
           ))}
         </div>
       </div>
