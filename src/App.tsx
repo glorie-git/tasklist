@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Task from "./components/Task.tsx";
 import "./App.css";
 import TaskInput from "./components/TaskInput.tsx";
+import taskService from "./services/tasks.ts";
 
 interface Task {
   id: number;
@@ -13,6 +14,19 @@ function App() {
   const [taskInput, setTaskInput] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
   const taskCount = useRef<number>(0);
+
+  // [] means we only want the effect to run during the first render
+  useEffect(() => {
+    taskService
+      .getAll()
+      .then((response: Task[]) => {
+        setTasks(response);
+      })
+      .catch((error: Error) => {
+        console.error("Failed to fetch tasks:", error);
+        // Handle the error appropriately
+      });
+  }, []);
 
   // the function that creates a new task
   const createTask = () => {
