@@ -99,7 +99,7 @@
   background: red;
   color: #ffffff;
 }
-#check-task {
+.check-task {
   margin-right: 20px;
 }
 .task label {
