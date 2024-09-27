@@ -9,7 +9,7 @@ interface TaskInputProps {
 const TaskInput = ({ taskInput, setTaskInput, createTask }: TaskInputProps) => {
   const createNewTask = () => {
     createTask();
-    const taskSection = document.querySelector(".tasks") as HTMLElement | null;
+    const taskSection = document.querySelector(".tasks") as HTMLElement;
     if (taskSection) {
       if (taskSection.offsetHeight >= offsetHeight)
         taskSection.classList.add("overflow");
