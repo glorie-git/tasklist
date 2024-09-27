@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import Task from "./components/Task";
 import "./App.css";
+import TaskInput from "./components/TaskInput";
 
 function App() {
   // constansts declared for input button and task list area
@@ -36,19 +37,11 @@ function App() {
       <div className="container">
         <h1 id="head-text">Task List</h1>
         <div id="newtask">
-          <input
-            value={taskInput}
-            id="task-input"
-            type="text"
-            placeholder="Add a task"
-            onChange={(e) => setTaskInput(e.target.value)}
-            onKeyUp={(e) => {
-              if (e.key === "Enter") createTask();
-            }}
+          <TaskInput
+            taskInput={taskInput}
+            setTaskInput={setTaskInput}
+            createTask={createTask}
           />
-          <button id="push" onClick={createTask}>
-            Add
-          </button>
         </div>
         <div className="tasks">
           {tasks.map((task, index) => (
